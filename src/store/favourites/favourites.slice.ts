@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IProduct } from '../../types/product.type'
 
+// Load favorites from localStorage
 const loadFromLocalStorage = (): IProduct[] => {
 	const serializedState = localStorage.getItem('likes')
 	return serializedState ? JSON.parse(serializedState) : []
@@ -14,11 +15,15 @@ export const favoritesSlice = createSlice({
 	reducers: {
 		toggleFavorites: (state, { payload: product }: PayloadAction<IProduct>) => {
 			const isExists = state.some(p => p.id === product.id)
-			if (isExists)
-				state = state.filter(p => p.id !== product.id)
-			else
-				return [...state, product]
-			localStorage.setItem('likes', JSON.stringify(state))
+			if (isExists) {
+				const newState = state.filter(p => p.id !== product.id)
+				localStorage.setItem('likes', JSON.stringify(newState))
+				return newState
+			} else {
+				const newState = [...state, product]
+				localStorage.setItem('likes', JSON.stringify(newState))
+				return newState
+			}
 		},
 	},
 })

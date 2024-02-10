@@ -6,11 +6,17 @@ import { PiShoppingCartSimpleThin } from "react-icons/pi"
 import { Wrapper } from '../wrapper/Wrapper'
 import { ModalMenu } from '../modal/ModalMenu'
 import { NavMenu } from '../navbar/NavMenu'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { useNavigate } from 'react-router-dom'
+import { ModalCart } from '../modal/ModalCart'
 // import { ModalCart } from '../modal/ModalCart'
 
 export const Header: FC = () => {
 	const [modalActive, setModalActive] = useState<boolean>(false)
 	const [modalCartActive, setModalCartActive] = useState<boolean>(false)
+	const cart = useTypedSelector(state => state.cart)
+	const navigate = useNavigate()
+
 
 	return (
 		<>
@@ -33,13 +39,13 @@ export const Header: FC = () => {
 						</div>
 					</div>
 					<div className='flex justify-center items-center gap-10 z-30'>
-						<div className='flex justify-center items-center bg-main rounded-full text-white p-1 cursor-pointer hover:scale-105 hover:bg-red-500 active:bg-red-400 active:text-red-200 transition-fast'>
+						<div className='flex justify-center items-center bg-main rounded-full text-white p-1 cursor-pointer hover:scale-105 hover:bg-red-500 active:bg-red-400 active:text-red-200 transition-fast' onClick={() => navigate('/favorites')}>
 							<CiHeart className='w-10 h-10' />
 						</div>
 						<div className='relative flex justify-center items-center bg-banner text-white rounded-full p-1 cursor-pointer hover:scale-105 hover:bg-stone-700 active:bg-stone-500 active:text-stone-200 transition-fast z-30' onClick={() => setModalCartActive(true)}>
 							<PiShoppingCartSimpleThin className='w-10 h-10' />
-							<div className='absolute flex justify-center items-center right-0 bottom-0 w-6 h-6 bg-white border-2 border-main rounded-full text-main font-bold'>
-								4
+							<div className='absolute flex justify-center items-center right-0 bottom-0 w-6 h-6 bg-white border-2 border-main rounded-full text-main font-bold' onClick={() => setModalCartActive(true)}>
+								{cart.length}
 							</div>
 						</div>
 					</div>
@@ -50,10 +56,9 @@ export const Header: FC = () => {
 					<NavMenu />
 				</ModalMenu>
 			}
-			{/* {
-				modalCartActive &&
-				<ModalCart active={modalCartActive} setActive={setModalCartActive} />
-			} */}
+			{modalCartActive &&
+				<ModalCart active={modalCartActive} setActive={setModalCartActive} cart={cart} />
+			}
 		</>
 	)
 }

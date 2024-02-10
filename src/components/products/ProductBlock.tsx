@@ -9,6 +9,7 @@ import { useActions } from '../../hooks/useActions'
 import { CartItem } from '../../store/cart/cart.slice'
 
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 
 interface ProductBlockProps {
@@ -24,8 +25,10 @@ interface ProductBlockProps {
 
 
 export const ProductBlock: FC<ProductBlockProps> = ({ id, name, price, image, region, product, cart, discount }) => {
+	const favorites = useTypedSelector(state => state.favorites)
 	const { addToCart, removeFromCart, toggleFavorites } = useActions()
 	const isExistsInCart = cart.some(p => p.product.id === product.id)
+	const isExistsInFavorites = favorites.some(p => p.id === product.id)
 
 	// const { pathname } = useLocation()
 	const navigate = useNavigate()
@@ -37,7 +40,7 @@ export const ProductBlock: FC<ProductBlockProps> = ({ id, name, price, image, re
 
 				<div className='flex justify-between items-center'>
 					<span className='bg-back px-2 rounded-lg'>{discount}%</span>
-					<CiHeart className='text-3xl hover:scale-110 text-black hover:text-main transition-fast z-30' onClick={() => toggleFavorites(product)} />
+					<CiHeart className={`rounded-md text-3xl hover:scale-110 ${isExistsInFavorites ? 'text-white bg-main' : 'text-black bg-back'} hover:text-main transition-fast z-30`} onClick={() => toggleFavorites(product)} />
 
 				</div>
 				<div className='relative flex justify-center items-center'>

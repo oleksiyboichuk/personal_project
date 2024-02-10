@@ -6,7 +6,12 @@ export interface CartItem {
 	total: number
 }
 
-const initialState: CartItem[] = []
+const loadCartFromLocalStorage = (): CartItem[] => {
+	const serializedState = localStorage.getItem('cart')
+	return serializedState ? JSON.parse(serializedState) : []
+}
+
+const initialState: CartItem[] = loadCartFromLocalStorage()
 
 export const cartSlice = createSlice({
 	name: 'cart',
@@ -20,15 +25,19 @@ export const cartSlice = createSlice({
 			} else {
 				state.push({ product: action.payload, total: 1 })
 			}
+			localStorage.setItem('cart', JSON.stringify(state))
 		},
 		removeFromCart: (state, action: PayloadAction<{ id: number }>) => {
-			return state.filter(item => item.product.id !== action.payload.id)
+			const newState = state.filter(item => item.product.id !== action.payload.id)
+			localStorage.setItem('cart', JSON.stringify(newState))
+			return newState
 		},
 		plusCart: (state, action: PayloadAction<{ id: number }>) => {
 			const { id } = action.payload
 			const existingIndex = state.findIndex(item => item.product.id === id)
 			if (existingIndex !== -1) {
 				state[existingIndex].total += 1
+				localStorage.setItem('cart', JSON.stringify(state))
 			}
 		},
 		minusCart: (state, action: PayloadAction<{ id: number }>) => {
@@ -40,10 +49,10 @@ export const cartSlice = createSlice({
 				} else {
 					state.splice(existingIndex, 1)
 				}
+				localStorage.setItem('cart', JSON.stringify(state))
 			}
-		}
-
-	}
+		},
+	},
 })
 
 export const cartReducer = cartSlice.reducer
