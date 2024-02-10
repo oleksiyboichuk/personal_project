@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+body {
+  margin: 0;
+  font-family: 'Work Sans', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  background-image: radial-gradient(#F1F1F0 2px, transparent 1px);
+  background-size: 10px 10px;
+
+}
+
+@layer base {
+  .button-primary {
+    @apply transition-all duration-500 ease-in-out;
+
+    &:hover {
+      @apply bg-main text-white scale-110;
+    }
+
+    &:active {
+      @apply bg-red-400 text-red-200;
+    }
+  }
+
+  .transition-slow {
+    @apply transition-all duration-500 ease-in-out;
+
+  }
+
+  .transition-fast {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.050);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
