@@ -40,7 +40,7 @@ export const ProductBlock: FC<ProductBlockProps> = ({ id, name, price, image, re
 
 				<div className='flex justify-between items-center'>
 					<span className='bg-back px-2 rounded-lg'>{discount}%</span>
-					<CiHeart className={`rounded-md text-3xl hover:scale-110 ${isExistsInFavorites ? 'text-white bg-main' : 'text-black bg-back'} hover:text-main transition-fast z-30`} onClick={() => toggleFavorites(product)} />
+					<CiHeart className={`rounded-md text-3xl hover:scale-110 ${isExistsInFavorites ? 'text-white bg-main hover:text-red-100' : 'text-black bg-back hover:bg-red-200'} transition-fast z-30`} onClick={() => toggleFavorites(product)} />
 
 				</div>
 				<div className='relative flex justify-center items-center'>
