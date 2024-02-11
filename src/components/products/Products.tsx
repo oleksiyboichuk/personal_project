@@ -31,7 +31,7 @@ export const Products: FC = () => {
 				<div className='flex justify-between items-center px-[3%] md:px-0  md:pb-2 pt-5'>
 					<NavButton />
 					<div className='flex justify-center items-center gap-10 z-30'>
-						<div className='flex justify-center items-center bg-main rounded-full text-white p-1 cursor-pointer hover:scale-105 hover:bg-red-500 active:bg-red-400 active:text-red-200 transition-fast' onClick={() => navigate('/favorites')}>
+						<div className='flex justify-center items-center bg-main rounded-full text-white p-1 cursor-pointer hover:scale-105 hover:bg-red-500 active:bg-red-400 active:text-red-200 transition-fast' onClick={() => navigate('/products/favorites')}>
 							<CiHeart className='w-10 h-10' />
 						</div>
 						<div className='relative flex justify-center items-center bg-banner text-white rounded-full p-1 cursor-pointer hover:scale-105 hover:bg-stone-700 active:bg-stone-500 active:text-stone-200 transition-fast z-30' onClick={() => setModalCartActive(true)} >

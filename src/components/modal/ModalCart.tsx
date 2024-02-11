@@ -45,10 +45,16 @@ export const ModalCart: FC<ModalCartProps> = ({ active, setActive, cart }) => {
 								<p className='font-semibold'>{item.total}</p>
 								<p className='font-semibold text-main/90 text-lg'>{item.total * item.product.price}$</p>
 
-								<div className='flex flex-col justify-between items-center gap-2'>
-									<IoMdAddCircleOutline className='w-6 h-6 hover:text-green-600 hover:scale-110 transition-fast cursor-pointer select-none' onClick={(e) => { e.stopPropagation(); plusCart({ id: item.product.id }) }} />
-									<IoMdRemoveCircleOutline className='w-6 h-6 hover:text-orange-400 hover:scale-110 transition-fast cursor-pointer select-none' onClick={(e) => { e.stopPropagation(); minusCart({ id: item.product.id }) }} />
-									<FaRegTrashAlt className='w-5 h-5 hover:text-main hover:scale-110 transition-fast cursor-pointer select-none' onClick={(e) => { e.stopPropagation(); removeFromCart({ id: item.product.id }) }} />
+								<div className='flex flex-col justify-between items-center gap-1'>
+									<div className='px-2 py-1' onClick={(e) => { e.stopPropagation(); plusCart({ id: item.product.id }) }}>
+										<IoMdAddCircleOutline className='w-6 h-6 hover:text-green-600 hover:scale-110 transition-fast cursor-pointer select-none' />
+									</div>
+									<div className='px-2 py-1' onClick={(e) => { e.stopPropagation(); minusCart({ id: item.product.id }) }} >
+										<IoMdRemoveCircleOutline className='w-6 h-6 hover:text-orange-400 hover:scale-110 transition-fast cursor-pointer select-none' />
+									</div>
+									<div className='px-1 py-1 bg-banner text-white rounded-lg hover:scale-110 transition-fast hover:text-black hover:bg-main cursor-pointer select-none transition-slow' onClick={(e) => { e.stopPropagation(); removeFromCart({ id: item.product.id }) }}>
+										<FaRegTrashAlt className='w-5 h-5' />
+									</div>
 								</div>
 							</div>
 						))}

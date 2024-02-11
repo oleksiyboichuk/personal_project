@@ -3,10 +3,14 @@ import { useActions } from '../../hooks/useActions'
 import { FaRegTrashAlt } from "react-icons/fa"
 import { Wrapper } from '../wrapper/Wrapper'
 import { NavButton } from '../button/NavButton'
+import { useNavigate } from 'react-router-dom'
 
 export const FavoritesComponent = () => {
+
 	const favorites = useTypedSelector(state => state.favorites)
 	const { toggleFavorites } = useActions()
+	const navigate = useNavigate()
+
 	return (
 		<>
 			<Wrapper>
@@ -17,13 +21,14 @@ export const FavoritesComponent = () => {
 					</div>
 				</div >
 				<div className='flex flex-wrap justify-center md:justify-normal'>
+					<div className='text-2xl text-back-text p-5'>{favorites.length === 0 && <div className=''>No items here...</div>}</div>
 					{favorites.map(item => (
-						<section className='relative max-w-[250px] md:max-w-[200px] m-2 flex flex-col justify-center bg-white drop-shadow-xl rounded-lg cursor-pointer hover:scale-110 transition-slow p-2 pb-5' key={item.id + item._id}>
+						<section className='relative max-w-[250px] md:max-w-[200px] m-2 flex flex-col justify-center bg-white drop-shadow-xl rounded-lg cursor-pointer hover:scale-110 transition-slow p-2 pb-5' key={item.id + item._id} onClick={() => navigate(`/products/${item.id}`)}>
 							<img src={item.image_url} alt={item.name} />
 							<h2 className='font-story text-xl font-bold text-center'>{item.name}</h2>
 							<div className='flex items-center justify-between px-2'>
 								<p className='text-md text-black/65'>Remove:</p>
-								<button className='bg-banner px-2 py-1 rounded-lg text-white m-1 hover:bg-main hover:scale-110 transition-fast' onClick={() => toggleFavorites(item)}><FaRegTrashAlt />
+								<button className='bg-banner px-2 py-1 rounded-lg text-white m-1 hover:bg-main hover:scale-110 transition-fast' onClick={(e) => { e.stopPropagation(); toggleFavorites(item) }}><FaRegTrashAlt />
 								</button>
 							</div>
 						</section>

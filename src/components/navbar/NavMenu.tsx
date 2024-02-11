@@ -1,35 +1,43 @@
 import { CiHome, CiCoffeeBean } from "react-icons/ci"
 import { PiNewspaperThin } from "react-icons/pi"
 import { BiLogoReact } from "react-icons/bi"
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const NavMenu = () => {
 	return (
 		<nav>
 			<ul className='text-2xl font-normal'>
 				<li>
-					<Link to='/products'>
+					<NavLink to='/'>
+						<div className='flex items-center gap-1 hover:underline'>
+							<CiHome className='text-main' />
+							Home
+						</div>
+					</NavLink>
+				</li>
+				<li>
+					<NavLink to='/products'>
 						<div className='flex items-center gap-1 hover:underline'>
 							<CiCoffeeBean className='text-main' />
 							Products
 						</div>
-					</Link>
+					</NavLink>
 				</li>
 				<li>
-					<Link to='/news'>
+					<NavLink to='/news'>
 						<div className='flex items-center gap-1 hover:underline'>
 							<PiNewspaperThin className='text-main' />
 							News
 						</div>
-					</Link>
+					</NavLink>
 				</li>
 				<li>
-					<Link to='/about'>
+					<NavLink to='/about'>
 						<div className='flex items-center gap-1 hover:underline'>
 							<BiLogoReact className='text-main' />
 							About
 						</div>
-					</Link>
+					</NavLink>
 				</li>
 			</ul>
 		</nav>
