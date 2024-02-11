@@ -17,10 +17,6 @@ export const Products: FC = () => {
 	const cart = useTypedSelector(state => state.cart)
 	const navigate = useNavigate()
 
-	const handleChangeSortOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		setSortOption(e.target.value)
-	}
-
 	const sortedData = data && [...data]
 
 	if (sortedData && sortOption === 'exp') {
@@ -33,7 +29,7 @@ export const Products: FC = () => {
 		<>
 			<Wrapper>
 				<div className='flex justify-between items-center px-[3%] md:px-0  md:pb-2 pt-5'>
-					<NavButton navlink='/' />
+					<NavButton />
 					<div className='flex justify-center items-center gap-10 z-30'>
 						<div className='flex justify-center items-center bg-main rounded-full text-white p-1 cursor-pointer hover:scale-105 hover:bg-red-500 active:bg-red-400 active:text-red-200 transition-fast' onClick={() => navigate('/favorites')}>
 							<CiHeart className='w-10 h-10' />
@@ -49,7 +45,7 @@ export const Products: FC = () => {
 
 				{sortedData &&
 					<div className='flex justify-end p-5 mr-[5%] select-none'>
-						<select name="sort" id="sort" value={sortOption} onChange={handleChangeSortOption} className='border-2 border-main px-2 py-1 rounded-lg text-main font-semibold'>
+						<select name="sort" id="sort" value={sortOption} onChange={(e) => setSortOption(e.target.value)} className='border-2 border-main px-2 py-1 rounded-lg text-main font-semibold'>
 							<option value="cheap">Cheaper at first</option>
 							<option value="exp">Expensive at first</option>
 						</select>
