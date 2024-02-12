@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useGetProductByIdQuery } from '../../store/api/products.api'
 import { NavButton } from '../button/NavButton'
 import { useActions } from '../../hooks/useActions'
@@ -10,10 +10,14 @@ import { ModalImage } from '../modal/ModalImage'
 export const ProductItem = () => {
 	const [modalImage, setModalImage] = useState<boolean>(false)
 	const { productId } = useParams<{ productId: string }>()
-	const { data, error, isLoading } = useGetProductByIdQuery(productId || '')
+
 	const { addToCart } = useActions()
+	const { data, error, isLoading } = useGetProductByIdQuery(productId || '')
+
 	const cart = useTypedSelector(state => state.cart)
 	const isExists = cart.some(item => item.product.id === data?.[0]?.id)
+
+	const navigate = useNavigate()
 
 	return (
 		<div>
@@ -45,13 +49,19 @@ export const ProductItem = () => {
 
 									<p className='font-bold text-4xl text-main/75'>{data[0].price}$</p>
 
-									<button className={`${isExists ? 'bg-black/10 text-black hover:cursor-default' : 'bg-green-500 text-white hover:scale-105'}  text-2xl px-4 py-1 my-4 rounded-lg drop-shadow-xl transition-slow`} onClick={() => {
-										if (!isExists) {
-											addToCart(data[0])
-										}
-									}}>
-										{isExists ? 'Already in cart' : 'Add to cart'}
-									</button>
+									<div className='flex gap-5'>
+										<button className={`${isExists ? 'bg-black/10 text-black hover:cursor-default' : 'bg-green-500 text-white hover:scale-105'}  text-2xl px-4 py-1 my-4 rounded-lg drop-shadow-xl transition-slow`} onClick={() => {
+											if (!isExists) {
+												addToCart(data[0])
+											}
+										}}>
+											{isExists ? 'Already in cart' : 'Add to cart'}
+										</button>
+										{isExists &&
+											<button className={`bg-green-500 text-white text-2xl px-4 py-1 my-4 rounded-lg drop-shadow-xl hover:scale-105 transition-slow`} onClick={() => navigate('/order')}>
+												Order now
+											</button>}
+									</div>
 								</div>
 							</div>
 						</div>

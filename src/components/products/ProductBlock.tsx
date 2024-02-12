@@ -44,7 +44,7 @@ export const ProductBlock: FC<ProductBlockProps> = ({ id, name, price, image, re
 			<Link to={`${pathname}/${id}`}>
 				<section className='bg-white max-w-[300px] rounded-3xl px-5 py-4 m-3  drop-shadow-xl hover:scale-105 transition-slow cursor-pointer z-10' key={id}>
 					<div className='flex justify-between items-center'>
-						<span className='bg-back px-2 rounded-lg'>{discount}%</span>
+						<span className='bg-back px-2 rounded-lg'>{discount + 5}%</span>
 						<CiHeart className={`rounded-md text-3xl hover:scale-110 ${isExistsInFavorites ? 'text-white bg-main hover:text-red-100' : 'text-black bg-back hover:bg-red-200 hover:text-black/40'} transition-fast z-30`} onClick={handleClickFavorites} />
 					</div>
 					<div className='relative flex justify-center items-center'>
@@ -52,7 +52,7 @@ export const ProductBlock: FC<ProductBlockProps> = ({ id, name, price, image, re
 					</div>
 					<h2 className='font-bold font-story text-xl'>{name}</h2>
 					<div className='flex flex-start'>
-						<p className='line-through text-back-text'>{(price / (1 - discount / 100)).toFixed(2)}$</p>
+						<p className='line-through text-back-text'>{(price / (1 - discount / 100) + 5).toFixed(2)}$</p>
 					</div>
 					<div className='flex justify-between items-center'>
 						<p className='font-bold text-xl text-main/75'>{price}$</p>

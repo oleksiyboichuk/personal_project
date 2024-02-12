@@ -13,6 +13,7 @@ export const productsApi = createApi({
 		}),
 		getProductById: builder.query<IProduct[], string>({
 			query: (id) => ({ url: `/${id}` }),
+
 		}),
 	}),
 })

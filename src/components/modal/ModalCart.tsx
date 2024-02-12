@@ -33,17 +33,23 @@ export const ModalCart: FC<ModalCartProps> = ({ active, setActive, cart }) => {
 					<CgCloseR />
 				</div>
 
+				{cart.length !== 0 && (
+					<div className='flex justify-end items-center mt-16 md:mt-10'>
+						<button className='bg-banner text-2xl font-semibold border-2 border-banner px-3 py-1 text-white rounded-lg drop-shadow-lg hover:bg-main hover:border-main hover:scale-105 active:bg-white active:text-main active:border-main transition-slow' onClick={() => navigate('/order')}>Order now!</button>
+					</div>
+				)}
+
 				{cart.length !== 0 ? (
-					<div className='mt-16 md:mt-10'>
+					<div className='mt-10 md:mt-8'>
 						{cart.map(item => (
 							<div className='bg-white flex justify-between mb-5 items-center px-4 py-2 rounded-xl drop-shadow-md cursor-pointer' key={item.product.id} onClick={() => navigate(`/products/${item.product.id}`)}>
 								<div className='flex flex-col justify-center items-center'>
 									<img className='w-20 md:w-40' src={item.product.image_url} alt="" />
-									<h2 className='font-story text-xl'>{item.product.name}</h2>
+									<h2 className='font-story text-lg md:text-xl'>{item.product.name}</h2>
 								</div>
-								<p className='font-semibold text-lg'>{item.product.price}$</p>
+								<p className='font-semibold text-md md:text-lg'>{item.product.price}$</p>
 								<p className='font-semibold'>{item.total}</p>
-								<p className='font-semibold text-main/90 text-lg'>{item.total * item.product.price}$</p>
+								<p className='font-semibold text-main/90 text-md md:text-lg'>{item.total * item.product.price}$</p>
 
 								<div className='flex flex-col justify-between items-center gap-1'>
 									<div className='px-2 py-1' onClick={(e) => { e.stopPropagation(); plusCart({ id: item.product.id }) }}>
@@ -52,7 +58,7 @@ export const ModalCart: FC<ModalCartProps> = ({ active, setActive, cart }) => {
 									<div className='px-2 py-1' onClick={(e) => { e.stopPropagation(); minusCart({ id: item.product.id }) }} >
 										<IoMdRemoveCircleOutline className='w-6 h-6 hover:text-orange-400 hover:scale-110 transition-fast cursor-pointer select-none' />
 									</div>
-									<div className='px-1 py-1 bg-banner text-white rounded-lg hover:scale-110 transition-fast hover:text-black hover:bg-main cursor-pointer select-none transition-slow' onClick={(e) => { e.stopPropagation(); removeFromCart({ id: item.product.id }) }}>
+									<div className='px-1 py-1 bg-banner text-white rounded-lg hover:scale-110 cursor-pointer select-none transition-fast' onClick={(e) => { e.stopPropagation(); removeFromCart({ id: item.product.id }) }}>
 										<FaRegTrashAlt className='w-5 h-5' />
 									</div>
 								</div>
@@ -60,15 +66,18 @@ export const ModalCart: FC<ModalCartProps> = ({ active, setActive, cart }) => {
 						))}
 					</div>
 				) : (
-					<div className='flex justify-center'>
+					<div className='flex justify-center mt-10 md:mt-0'>
 						<p className='text-2xl text-back-text'>Cart is empty...</p>
 					</div>
 				)}
-				<div className='fixed top-[4%] left-[5%]'>
-					<p className='text-2xl font-bold text-green-600'>
-						{cart.length !== 0 && <span className=''>Total: {totalCount.toFixed(2)}$</span>}
-					</p>
-				</div>
+
+				{cart.length !== 0 &&
+					<div className='fixed top-[4%] left-[5%]'>
+						<p className='text-2xl font-bold text-green-600'>
+							{cart.length !== 0 && <span className=''>Total: {totalCount.toFixed(2)}$</span>}
+						</p>
+					</div>
+				}
 			</div>
 		</div>
 	)
