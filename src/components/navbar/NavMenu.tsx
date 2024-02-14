@@ -19,15 +19,15 @@ export const NavMenu = () => {
 					<NavLink to='/products'>
 						<div className='flex items-center gap-1 hover:underline'>
 							<CiCoffeeBean className='text-main' />
-							Products
+							Shop
 						</div>
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to='/news'>
+					<NavLink to='/posts'>
 						<div className='flex items-center gap-1 hover:underline'>
 							<PiNewspaperThin className='text-main' />
-							News
+							Posts
 						</div>
 					</NavLink>
 				</li>

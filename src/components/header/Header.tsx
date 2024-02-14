@@ -55,7 +55,7 @@ export const Header: FC = () => {
 									value={searchText}
 									onChange={handleSearchChange}
 								/>
-								<div className='bg-main p-2 rounded-full text-white cursor-pointer hover:bg-red-600 active:bg-red-400 active:text-red-200 transition-fast'>
+								<div className='bg-main p-2 rounded-full text-white cursor-pointer hover:bg-red-600 active:bg-red-400 active:text-red-200 transition-fast' onClick={() => navigate('/products')}>
 									<FiSearch className='w-7 h-7' />
 								</div>
 							</div>
@@ -73,7 +73,7 @@ export const Header: FC = () => {
 											<img src={product.image_url} alt={product.name} className="w-16 h-16" />
 											<div>
 												<p className="font-semibold">{product.name}</p>
-												<p>{product.price}</p>
+												<p>{product.price}$</p>
 											</div>
 											...
 										</div>
