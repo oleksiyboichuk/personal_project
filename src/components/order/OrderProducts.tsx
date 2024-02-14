@@ -101,6 +101,7 @@ export const OrderProducts: React.FC = () => {
 						<div className='flex flex-col justify-center p-10'>
 							{cart.map(item =>
 								<OrderItem key={item.product.id} id={item.product.id} total={item.total} name={item.product.name} price={item.product.price} image={item.product.image_url} />
+
 							)}
 						</div>
 					</div>
