@@ -8,6 +8,7 @@ import { OrderProducts } from './components/order/OrderProducts'
 import { AboutPage } from './components/about/AboutPage'
 import { useEffect, useState } from 'react'
 import { ModalNotification } from './components/modal/ModalNotification'
+import { PostItem } from './components/posts/PostItem'
 
 
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/products/favorites' element={<FavoritesComponent />} />
         <Route path='/favorites' element={<FavoritesComponent />} />
         <Route path='/posts' element={<Posts />} />
+        <Route path='/posts/:postId' element={<PostItem />} />
         <Route path='/order' element={<OrderProducts />} />
         <Route path='/about' element={<AboutPage />} />
       </Routes>

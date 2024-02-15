@@ -1,20 +1,26 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { IPosts } from '../../types/posts.type'
+import { IPost, IPostsData } from '../../types/posts.type'
 
 
 const API_URL = 'https://dummyjson.com/posts'
 
 export const postsApi = createApi({
 	reducerPath: 'postsApi',
+	tagTypes: ['Posts'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: API_URL,
 	}),
 	endpoints: (builder) => ({
-		getPosts: builder.query<IPosts, void>({
+		getPosts: builder.query<IPostsData, void>({
 			query: () => '',
-
+			providesTags: () => [{
+				type: 'Posts'
+			}]
+		}),
+		getPostsById: builder.query<IPost, string>({
+			query: (id) => ({ url: `/${id}` }),
 		}),
 	}),
 })
 
-export const { useGetPostsQuery } = postsApi
+export const { useGetPostsQuery, useGetPostsByIdQuery } = postsApi

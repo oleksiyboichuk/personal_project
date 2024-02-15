@@ -1,14 +1,16 @@
-export interface IPosts {
+export interface IPost {
+	id: number
+	body: string
+	reactions: number
+	tags: string[]
+	title: string
+	userId: number
+}
+
+export interface IPostsData {
 	limit: number
-	posts: {
-		limit: number
-		id: number
-		title: string
-		body: string
-		userId: number
-		tags: string[]
-		reactions: number
-	}
+	posts: IPost[]
 	skip: number
 	total: number
 }
+

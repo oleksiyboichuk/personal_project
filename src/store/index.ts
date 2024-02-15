@@ -10,7 +10,7 @@ export const store = configureStore({
 		cart: cartReducer,
 		favorites: favoritesReducer
 	},
-	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsApi.middleware, postsApi.middleware)	//для кешування і тд.
+	middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsApi.middleware, postsApi.middleware)
 })
 
 export type TypeRootState = ReturnType<typeof store.getState>
