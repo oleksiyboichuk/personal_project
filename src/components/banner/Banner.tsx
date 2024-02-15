@@ -19,7 +19,7 @@ export const Banner: FC = () => {
 			</div>
 			<div className='absolute right-[2%] top-[-10%] rotate-6 scale-x-[-1] z-20'>
 				{/* TODO: зроби зображення та текст повністю адаптивним */}
-				<img className='hidden lg:w-[70%] 2xl:w-[90%]  md:block' src="/images/items/coffee_bag.png" alt="coffee_bag" />
+				<img className='hidden lg:w-[70%] 2xl:w-[90%]  md:block' src="./images/items/coffee_bag.png" alt="coffee_bag" />
 			</div>
 		</div>
 	)

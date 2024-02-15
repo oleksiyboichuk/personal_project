@@ -6,7 +6,7 @@ import { FaCity, FaStreetView, FaHouseUser } from "react-icons/fa"
 export const Footer: FC = () => {
 	return (
 		<div className='bg-slate-700 w-full flex justify-center items-center'>
-			<img className='object-cover' src="/images/banners/footer-banner.png" alt="footer-background" />
+			<img className='object-cover' src="./images/banners/footer-banner.png" alt="footer-background" />
 			<div className='absolute text-white text-xl'>
 
 				<h2 className='font-story text-[40px] text-red-400 mb-5 text-center font-semibold'>Contact <span className='text-white font-normal'>and</span> <span className='text-orange-300'>Location:</span></h2>

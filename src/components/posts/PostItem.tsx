@@ -17,7 +17,7 @@ export const PostItem = () => {
 				</div>
 			</Wrapper>
 			<div className='relative flex justify-center'>
-				<img src="/images/banners/post-banner.png" alt="banner" />
+				<img src="./images/banners/post-banner.png" alt="banner" />
 				<div className='absolute flex flex-col items-center justify-center'>
 					<img src="https://cdn2.iconfinder.com/data/icons/avatars-60/5985/25-Researcher-512.png" alt="" className='w-40 m-5' />
 					<h1 className='text-main font-story text-4xl'>{data?.title}</h1>
